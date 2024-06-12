@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Wpis</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}" id="title">ArtisticApp</a>
+        <div id="controls">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Wyloguj się</button>
+                </form>
+            </div>
+    </header>
+    <div id="addpost">
+    <h1>Dodaj Wpis</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Tytuł:</label>
+        <input type="text" name="title" id="title">
+        <label for="content">Treść:</label>
+        <textarea name="content" id="content"></textarea>
+        <button type="submit">Dodaj</button>
+    </form>
+    </div>
+</body>
+<style>
+    body{
+        background-color: burlywood;
+        height: 80vh;
+        margin: 0px;
+        padding: 0px;
+    }
+    a{
+        text-decoration: none;
+    }
+    #addpost{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    h1{
+        font-weight: bold;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    button{
+        margin-top: 5px;
+        width: 100%;
+    }
+    #content{
+        height: 30vh;
+        width: 15vw;
+    }
+    header {
+    height: 10vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content:space-between;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 5px;
+}
+#title{
+    font-size: 24px;
+}
+#title:hover {
+    text-decoration: underline;
+}
+#title:visited {
+    color: white;
+}
+header a:visited{
+    color:white;
+}
+#content{
+    width: 98%;
+}
+button{
+    background-color: chocolate;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+</style>
+</html>

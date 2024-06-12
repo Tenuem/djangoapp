@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'home' %}" id="title">ArtisticApp</a>
+    </header>
+    <div>
+    <h1>Rejestracja</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Zarejestruj się</button>
+    </form>
+    <p>Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a></p>
+    </div>
+</body>
+<style>
+    body{
+        background-color: burlywood;
+        padding: 0px;
+        margin: 0px;
+        height: 80vh;
+        }
+    a{
+      text-decoration: none;
+      color: blue;
+  }
+  a:visited{
+    color: blue;
+  }
+    h1{
+        font-weight: bold;
+    }
+    button{
+        width: 100%;
+    }
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+    }
+header {
+    height: 10vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content:space-between;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 5px;
+}
+#title{
+    font-size: 24px;
+}
+#title:hover {
+    text-decoration: underline;
+}
+#title:visited {
+    color: white;
+}
+header a:visited{
+    color:white;
+}
+button{
+    background-color: chocolate;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+</style>
+</html>

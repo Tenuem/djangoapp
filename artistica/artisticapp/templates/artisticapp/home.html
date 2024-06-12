@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Główna</title>
+    <link rel="stylesheet" type="text/css" href="header.css">
+</head>
+<body>    
+    <header>
+        <a href="{% url 'home' %}" id="title">ArtisticApp</a>
+        <div id="controls">
+            {% if user.is_authenticated %}
+                {% if user.is_editor == True %}
+                    <a href="{% url 'add_post' %}">Dodaj wpis</a>
+                {% endif %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Wyloguj się</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Zaloguj się</a>
+                <a href="{% url 'register' %}">Zarejestruj się</a>
+            {% endif %}
+            </div>
+    </header>
+    
+
+    <div id="box">
+    <h1>Poematy</h1>
+    <div class="container">
+        {% for post in posts %}
+        <div class="poem">
+            <p><u>{{ post.title }}</u></p>
+            <p><strong>autor:</strong> {{ post.author.username }}</p>
+            
+            <a href="{% url 'post_detail' post.id %}">Wyświetl post</a>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</body>
+<style>
+    body{
+        background-color: burlywood;
+        margin: 0px;
+    }
+    a{
+        text-decoration: none;
+        color: chocolate;
+    }
+    a:visited {
+        color: chocolate; /* Tutaj możesz ustawić żądany kolor */
+    }
+    h1{
+        font-weight: bold;
+    }
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 20px;
+        width: 80%;
+    }
+    #box{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .poem{
+        border: 2px;
+        background-color: aliceblue;
+        border-color: black;
+        margin: 10px;
+        padding: 5px;
+    }
+header {
+    height: 10vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content:space-between;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 5px;
+}
+#title{
+    font-size: 24px;
+}
+#title:hover {
+    text-decoration: underline;
+}
+#title:visited {
+    color: white;
+}
+header a:visited{
+    color:white;
+}
+#controls{
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 0px;
+}
+button{
+    background-color: chocolate;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+</style>
+</html>

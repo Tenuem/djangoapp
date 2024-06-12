@@ -1,0 +1,38 @@
+
+<style>
+    header {
+        height: 10vh;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    header a {
+        color: white;
+        text-decoration: none;
+        font-size: 24px;
+    }
+
+    header a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<header>
+    <a href="{% url 'home' %}" id="title">ArtisticApp</a>
+</header>
+<div id="controls">
+    {% if user.is_authenticated %}
+        {% if user.is_editor == True %}
+            <a href="{% url 'add_post' %}">Dodaj wpis</a>
+        {% endif %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Wyloguj się</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Zaloguj się</a>
+        <a href="{% url 'register' %}">Zarejestruj się</a>
+    {% endif %}
+    </div>
